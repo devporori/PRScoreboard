@@ -1,0 +1,8 @@
+name: PRScoreboard
+version: 1.0.0
+main: com.Dev_porori.Scoreboard.Main
+author: Dev_porori
+
+commands:
+  prboard:
+    description: 'PRScoreboard Commands!'
