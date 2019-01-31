@@ -62,9 +62,9 @@ public class ScoreboardController {
 				.replace("<maxhealth>", String.valueOf(player.getHealthScale()))
 				.replace("<food>", String.valueOf(player.getFoodLevel()))
 				.replace("<level>", String.valueOf(player.getLevel()))
-				.replace("<location:x>", String.valueOf(player.getLocation().getX()))
-				.replace("<location:y>", String.valueOf(player.getLocation().getY()))
-				.replace("<location:z>", String.valueOf(player.getLocation().getZ())));
+				.replace("<loc:x>", String.valueOf(player.getLocation().getX()))
+				.replace("<loc:y>", String.valueOf(player.getLocation().getY()))
+				.replace("<loc:z>", String.valueOf(player.getLocation().getZ())));
 	}
 
 }
