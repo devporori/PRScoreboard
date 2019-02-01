@@ -16,15 +16,15 @@ public class Util {
 				.replace("&f", "」f").replace("&r", "」r").replace("&k", "」k").replace("&l", "」l").replace("&m", "」m")
 				.replace("&n", "」n").replace("&o", "」o");
 	}
-	
+
 	public static void log(String log) {
 		Bukkit.getConsoleSender().sendMessage(prefix + log);
 	}
-	
+
 	public static void sendMessage(CommandSender sender, String message) {
 		sender.sendMessage(prefix + message);
 	}
-	
+
 	public static void removeScoreboard(Player player) {
 		player.getScoreboard().clearSlot(DisplaySlot.SIDEBAR);
 	}
