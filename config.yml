@@ -3,7 +3,7 @@
 # <online> - 접속자수
 # <health> - 체력 / <maxhealth> - 최대체력 / <food> - 배고픔
 # <level> - 레벨
-# <location:x> - x좌표 / <location:y> - y좌표 / <location:z> - z좌표
+# <loc:x> - x좌표 / <loc:y> - y좌표 / <loc:z> - z좌표
 
 # 스코어보드의 제목을 설정합니다.
 title: '&b[ &fPRScoreboard &b]'
