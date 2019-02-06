@@ -12,6 +12,7 @@ public class PlayerListener implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		us.put(e.getPlayer(), true);
+		tn.put(e.getPlayer(), 0);
 		setScoreboard(e.getPlayer());
 	}
 	
