@@ -4,6 +4,7 @@
 # <health> - 체력 / <maxhealth> - 최대체력 / <food> - 배고픔
 # <level> - 레벨
 # <loc:x> - x좌표 / <loc:y> - y좌표 / <loc:z> - z좌표
+# <world> - 월드의 이름
 
 # 스코어보드의 제목을 설정합니다.
 title: '&b[ &fPRScoreboard &b]'

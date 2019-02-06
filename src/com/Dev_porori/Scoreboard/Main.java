@@ -1,6 +1,9 @@
 package com.Dev_porori.Scoreboard;
 
 import static com.Dev_porori.Scoreboard.Util.*;
+
+import java.util.HashMap;
+
 import static com.Dev_porori.Scoreboard.ScoreboardController.*;
 
 import org.bukkit.Bukkit;
@@ -12,14 +15,27 @@ public class Main extends JavaPlugin {
 	public static Main instance;
 	public static FileConfiguration cf;
 
+	static HashMap<String, Boolean> pl = new HashMap<>();
+
 	public void onEnable() {
 		instance = this;
 		createConfig();
 		registerEvents();
 		setExecutors();
+		hook();
 		enableMessage();
 		checkPlayers();
 		enableScoreboard();
+	}
+
+	private void hook() {
+		if (Bukkit.getPluginManager().getPlugin("Vault") != null) {
+			pl.put("vault", true);
+			log("Vault 플러그인을 확인하였습니다. [ 관련 홀더를 사용할수 있습니다! ]");
+		} else {
+			pl.put("vault", false);
+			log("Vault 플러그인을 찾을수없습니다. [ 관련 홀더를 사용하지 못합니다. ]");
+		}
 	}
 
 	private void checkPlayers() {
