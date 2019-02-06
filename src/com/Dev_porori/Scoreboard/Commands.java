@@ -49,6 +49,7 @@ public class Commands implements CommandExecutor {
 				sendMessage(sender, "리로드 되었습니다.");
 				Main.instance.reloadConfig();
 				Main.cf = Main.instance.getConfig();
+				titlenum = 0;
 				return false;
 			} else {
 				sendMessage(sender, "알수없는 명령어입니다.");

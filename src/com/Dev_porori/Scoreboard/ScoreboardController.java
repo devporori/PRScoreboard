@@ -18,7 +18,7 @@ public class ScoreboardController {
 
 	public static HashMap<Player, Boolean> us = new HashMap<>();
 
-	static int titlenum = 0;
+	static int titlenum;
 
 	static void enableScoreboard() {
 		Main.instance.getServer().getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
@@ -30,7 +30,7 @@ public class ScoreboardController {
 					setScoreboard(player);
 				});
 			}
-		}, 0L, (5 * Main.cf.getLong("loadTime")));
+		}, 0L, 3L);
 	}
 
 	static void setScoreboard(Player player) {
