@@ -14,13 +14,9 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
-import net.milkbowl.vault.economy.Economy;
-
 public class ScoreboardController {
 
 	public static HashMap<Player, Boolean> us = new HashMap<>();
-
-	private static Economy e;
 
 	static void enableScoreboard() {
 		Main.instance.getServer().getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
@@ -67,13 +63,13 @@ public class ScoreboardController {
 				.replace("<food>", String.valueOf(player.getFoodLevel()))
 				.replace("<level>", String.valueOf(player.getLevel()))
 				.replace("<loc:x>",
-						getXloc(player) == -1 ? "-0"
+						getXloc(player) == -1 ? "-0.0"
 								: getXloc(player) < 0 ? String.valueOf(getXloc(player) + 1)
 										: String.valueOf(getXloc(player)))
 				.replace("<loc:y>", String.valueOf(Math.floor(player.getLocation().getY())))
 				.replace("<loc:z>", String.valueOf(Math.floor(player.getLocation().getZ()))))
 						.replace("<world>", player.getWorld().getName()).replace("<money>",
-								Main.pl.get("vault") ? String.valueOf(e.getBalance(player)) : "vault가 필요합니다.");
+								Main.pl.get("vault") ? String.valueOf(Main.eco.getBalance(player)) : "vault가 필요합니다.");
 	}
 
 	private static double getXloc(Player player) {
