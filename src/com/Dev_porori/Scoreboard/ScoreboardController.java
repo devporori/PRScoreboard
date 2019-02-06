@@ -58,6 +58,8 @@ public class ScoreboardController {
 	private static String setPlaceholder(String str, Player player) {
 		return replaceColor(str.replace("<playername>", player.getName())
 				.replace("<online>", String.valueOf(Bukkit.getOnlinePlayers().size()))
+				.replace("<maxplayer>", String.valueOf(Bukkit.getMaxPlayers()))
+				.replace("<ip>", player.getAddress().getAddress().getHostAddress())
 				.replace("<health>", String.valueOf(Math.floor(player.getHealth())))
 				.replace("<maxhealth>", String.valueOf(player.getHealthScale()))
 				.replace("<food>", String.valueOf(player.getFoodLevel()))
