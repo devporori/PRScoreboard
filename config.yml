@@ -5,9 +5,17 @@
 # <level> - 레벨
 # <loc:x> - x좌표 / <loc:y> - y좌표 / <loc:z> - z좌표
 # <world> - 월드의 이름
+# <ip> - 플레이어의 아이피
 
 # 스코어보드의 제목을 설정합니다.
-title: '&b[ &fPRScoreboard &b]'
+title:
+- '&c-=-=- &fPRScoreboard &c-=-=-'
+- '&6-=-=- &fPRScoreboard &6-=-=-'
+- '&e-=-=- &fPRScoreboard &e-=-=-'
+- '&a-=-=- &fPRScoreboard &a-=-=-'
+- '&b-=-=- &fPRScoreboard &b-=-=-'
+- '&1-=-=- &fPRScoreboard &1-=-=-'
+- '&5-=-=- &fPRScoreboard &5-=-=-'
 
 # 스코어보드의 내용을 설정합니다
 # 최대 15개까지 가능합니다 [ 초과 시 출력은 되지 않습니다 ]
@@ -21,5 +29,5 @@ scoreboard:
 - '  &f<online>'
 - ''
 
-# 설정된 시간(초)마다 스코어보드를 불러옵니다.
-loadTime: 1
+# 설정된 시간(틱)마다 스코어보드를 불러옵니다.
+loadTime: 20

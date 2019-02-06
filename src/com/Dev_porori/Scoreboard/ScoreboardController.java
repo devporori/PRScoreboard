@@ -18,6 +18,8 @@ public class ScoreboardController {
 
 	public static HashMap<Player, Boolean> us = new HashMap<>();
 
+	static int titlenum = 0;
+
 	static void enableScoreboard() {
 		Main.instance.getServer().getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
 			@Override
@@ -28,7 +30,7 @@ public class ScoreboardController {
 					setScoreboard(player);
 				});
 			}
-		}, 0L, (20 * Main.cf.getLong("loadTime")));
+		}, 0L, (5 * Main.cf.getLong("loadTime")));
 	}
 
 	static void setScoreboard(Player player) {
@@ -36,7 +38,7 @@ public class ScoreboardController {
 		Scoreboard b = m.getNewScoreboard();
 		Objective o = b.registerNewObjective("playerinfo", "dummy");
 		o.setDisplaySlot(DisplaySlot.SIDEBAR);
-		o.setDisplayName(Util.replaceColor(Main.cf.getString("title")));
+		o.setDisplayName(Util.replaceColor(getTitle()));
 		List<String> score = Main.cf.getStringList("scoreboard");
 		Score s;
 		for (int i = 0; i < score.size(); i++) {
@@ -53,6 +55,15 @@ public class ScoreboardController {
 		us.put(player, useScoreboard);
 		if (!useScoreboard)
 			removeScoreboard(player);
+	}
+
+	private static String getTitle() {
+		List<String> titles = Main.cf.getStringList("title");
+		if (titlenum + 1 >= titles.size() || titlenum < 0)
+			titlenum = 0;
+		else
+			titlenum++;
+		return titles.get(titlenum);
 	}
 
 	private static String setPlaceholder(String str, Player player) {

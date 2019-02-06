@@ -28,7 +28,7 @@ public class Main extends JavaPlugin {
 		setExecutors();
 		hook();
 		enableMessage();
-		checkPlayers();
+		checkSystems();
 		enableScoreboard();
 	}
 
@@ -47,9 +47,10 @@ public class Main extends JavaPlugin {
 		}
 	}
 
-	private void checkPlayers() {
+	private void checkSystems() {
 		if (Bukkit.getOnlinePlayers().size() != 0)
 			Bukkit.getOnlinePlayers().forEach(player -> toggleScoreboard(player, true));
+		titlenum = 0;
 	}
 
 	private void createConfig() {

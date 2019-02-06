@@ -38,6 +38,7 @@ public class Commands implements CommandExecutor {
 				}
 				sendMessage(sender, "스코어보드가 활성화 되었습니다.");
 				toggleScoreboard((Player) sender, true);
+				titlenum = 0;
 				return false;
 			}
 			if (args[0].equals("reload")) {
