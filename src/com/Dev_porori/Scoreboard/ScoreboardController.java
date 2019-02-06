@@ -79,9 +79,9 @@ public class ScoreboardController {
 								: getXloc(player) < 0 ? String.valueOf(getXloc(player) + 1)
 										: String.valueOf(getXloc(player)))
 				.replace("<loc:y>", String.valueOf(Math.floor(player.getLocation().getY())))
-				.replace("<loc:z>", String.valueOf(Math.floor(player.getLocation().getZ()))))
-						.replace("<world>", player.getWorld().getName()).replace("<money>",
-								Main.pl.get("vault") ? String.valueOf(Main.eco.getBalance(player)) : "vault가 필요합니다.");
+				.replace("<loc:z>", String.valueOf(Math.floor(player.getLocation().getZ())))
+				.replace("<world>", player.getWorld().getName()).replace("<money>",
+						Main.pl.get("vault") == true ? String.valueOf(Main.eco.getBalance(player)) : "vault가 필요합니다."));
 	}
 
 	private static double getXloc(Player player) {
