@@ -17,8 +17,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 public class ScoreboardController {
 
 	public static HashMap<Player, Boolean> us = new HashMap<>();
-
-	static int titlenum;
+	public static HashMap<Player, Integer> tn = new HashMap<>();
 
 	static void enableScoreboard() {
 		Main.instance.getServer().getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
@@ -38,7 +37,7 @@ public class ScoreboardController {
 		Scoreboard b = m.getNewScoreboard();
 		Objective o = b.registerNewObjective("playerinfo", "dummy");
 		o.setDisplaySlot(DisplaySlot.SIDEBAR);
-		o.setDisplayName(Util.replaceColor(getTitle()));
+		o.setDisplayName(Util.replaceColor(getTitle(player)));
 		List<String> score = Main.cf.getStringList("scoreboard");
 		Score s;
 		for (int i = 0; i < score.size(); i++) {
@@ -57,13 +56,13 @@ public class ScoreboardController {
 			removeScoreboard(player);
 	}
 
-	private static String getTitle() {
+	private static String getTitle(Player player) {
 		List<String> titles = Main.cf.getStringList("title");
-		if (titlenum + 1 >= titles.size() || titlenum < 0)
-			titlenum = 0;
+		if (tn.get(player) + 1 >= titles.size() || tn.get(player) < 0)
+			tn.put(player, 0);
 		else
-			titlenum++;
-		return titles.get(titlenum);
+			tn.put(player, tn.get(player) + 1);
+		return titles.get(tn.get(player));
 	}
 
 	private static String setPlaceholder(String str, Player player) {

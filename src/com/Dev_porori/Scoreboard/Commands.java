@@ -3,6 +3,7 @@ package com.Dev_porori.Scoreboard;
 import static com.Dev_porori.Scoreboard.Util.*;
 import static com.Dev_porori.Scoreboard.ScoreboardController.*;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -38,7 +39,6 @@ public class Commands implements CommandExecutor {
 				}
 				sendMessage(sender, "스코어보드가 활성화 되었습니다.");
 				toggleScoreboard((Player) sender, true);
-				titlenum = 0;
 				return false;
 			}
 			if (args[0].equals("reload")) {
@@ -49,7 +49,7 @@ public class Commands implements CommandExecutor {
 				sendMessage(sender, "리로드 되었습니다.");
 				Main.instance.reloadConfig();
 				Main.cf = Main.instance.getConfig();
-				titlenum = 0;
+				Bukkit.getOnlinePlayers().forEach(player -> tn.put(player, 0));
 				return false;
 			} else {
 				sendMessage(sender, "알수없는 명령어입니다.");

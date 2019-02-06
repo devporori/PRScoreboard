@@ -8,6 +8,7 @@ import static com.Dev_porori.Scoreboard.ScoreboardController.*;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -48,9 +49,12 @@ public class Main extends JavaPlugin {
 	}
 
 	private void checkSystems() {
-		if (Bukkit.getOnlinePlayers().size() != 0)
-			Bukkit.getOnlinePlayers().forEach(player -> toggleScoreboard(player, true));
-		titlenum = 0;
+		if (Bukkit.getOnlinePlayers().size() != 0) {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				toggleScoreboard(p, true);
+				tn.put(p, 0);
+			}
+		}
 	}
 
 	private void createConfig() {
