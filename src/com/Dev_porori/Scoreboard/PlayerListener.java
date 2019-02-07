@@ -13,6 +13,7 @@ public class PlayerListener implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		us.put(e.getPlayer(), true);
 		tn.put(e.getPlayer(), 0);
+		pdelay.put(e.getPlayer(), 1);
 		setScoreboard(e.getPlayer());
 	}
 	

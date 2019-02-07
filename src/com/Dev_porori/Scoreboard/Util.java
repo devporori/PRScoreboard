@@ -7,7 +7,9 @@ import org.bukkit.scoreboard.DisplaySlot;
 
 public class Util {
 
-	public static String prefix = "」b[ 」fPRScoreboard 」b] 」f";
+	public static final String PREFIX = "」b[ 」fPRScoreboard 」b] 」f";
+	public static final String INFO = "」b[ 」fPRScoreboard Info 」b] 」f"; 
+	public static final String WARN = "」b[ 」fPRScoreboard Warn 」b] 」f";
 
 	public static String replaceColor(String s) {
 		return s.replace("&1", "」1").replace("&2", "」2").replace("&3", "」3").replace("&4", "」4").replace("&5", "」5")
@@ -18,11 +20,15 @@ public class Util {
 	}
 
 	public static void log(String log) {
-		Bukkit.getConsoleSender().sendMessage(prefix + log);
+		Bukkit.getConsoleSender().sendMessage(INFO + log);
 	}
 
+	public static void warn(String log) {
+		Bukkit.getConsoleSender().sendMessage(WARN + log);
+	}
+	
 	public static void sendMessage(CommandSender sender, String message) {
-		sender.sendMessage(prefix + message);
+		sender.sendMessage(PREFIX + message);
 	}
 
 	public static void removeScoreboard(Player player) {

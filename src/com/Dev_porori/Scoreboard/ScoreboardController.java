@@ -14,13 +14,20 @@ import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
+import me.clip.placeholderapi.PlaceholderAPI;
+
 public class ScoreboardController {
+
+	public static int stop = -1;
 
 	public static HashMap<Player, Boolean> us = new HashMap<>();
 	public static HashMap<Player, Integer> tn = new HashMap<>();
+	public static HashMap<String, Integer> delay = new HashMap<>();
+	public static HashMap<Player, Integer> pdelay = new HashMap<>();
+	public static List<String> titles;
 
 	static void enableScoreboard() {
-		Main.instance.getServer().getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
+		stop = Main.instance.getServer().getScheduler().scheduleSyncRepeatingTask(Main.instance, new Runnable() {
 			@Override
 			public void run() {
 				Bukkit.getOnlinePlayers().forEach(player -> {
@@ -29,7 +36,7 @@ public class ScoreboardController {
 					setScoreboard(player);
 				});
 			}
-		}, 0L, 3L);
+		}, 0L, delay.get("scoreboard"));
 	}
 
 	static void setScoreboard(Player player) {
@@ -57,31 +64,42 @@ public class ScoreboardController {
 	}
 
 	private static String getTitle(Player player) {
-		List<String> titles = Main.cf.getStringList("title");
-		if (tn.get(player) + 1 >= titles.size() || tn.get(player) < 0)
+		if (pdelay.get(player) < delay.get("title")) {
+			pdelay.put(player, pdelay.get(player) + 1);
+			return titles.get(tn.get(player));
+		}
+		if (tn.get(player) + 1 >= titles.size() || tn.get(player) < 0) {
 			tn.put(player, 0);
-		else
+			pdelay.put(player, 1);
+		} else {
 			tn.put(player, tn.get(player) + 1);
+			pdelay.put(player, 1);
+		}
 		return titles.get(tn.get(player));
 	}
 
 	private static String setPlaceholder(String str, Player player) {
-		return replaceColor(str.replace("<playername>", player.getName())
-				.replace("<online>", String.valueOf(Bukkit.getOnlinePlayers().size()))
-				.replace("<maxplayer>", String.valueOf(Bukkit.getMaxPlayers()))
-				.replace("<ip>", player.getAddress().getAddress().getHostAddress())
-				.replace("<health>", String.valueOf(Math.floor(player.getHealth())))
-				.replace("<maxhealth>", String.valueOf(player.getHealthScale()))
-				.replace("<food>", String.valueOf(player.getFoodLevel()))
-				.replace("<level>", String.valueOf(player.getLevel()))
-				.replace("<loc:x>",
-						getXloc(player) == -1 ? "-0.0"
+		return replaceColor(str.replaceAll("(?i)<playername>", player.getName())
+				.replaceAll("(?i)<online>", String.valueOf(Bukkit.getOnlinePlayers().size()))
+				.replaceAll("(?i)<maxplayer>", String.valueOf(Bukkit.getMaxPlayers()))
+				.replaceAll("(?i)<ip>", player.getAddress().getAddress().getHostAddress())
+				.replaceAll("(?i)<health>", String.valueOf(Math.floor(player.getHealth())))
+				.replaceAll("(?i)<maxhealth>", String.valueOf(player.getHealthScale()))
+				.replaceAll("(?i)<food>", String.valueOf(player.getFoodLevel()))
+				.replaceAll("(?i)<level>", String.valueOf(player.getLevel()))
+				.replaceAll("(?i)<loc:x>",
+						getXloc(player) == -1 ? "-0"
 								: getXloc(player) < 0 ? String.valueOf(getXloc(player) + 1)
 										: String.valueOf(getXloc(player)))
-				.replace("<loc:y>", String.valueOf(Math.floor(player.getLocation().getY())))
-				.replace("<loc:z>", String.valueOf(Math.floor(player.getLocation().getZ())))
-				.replace("<world>", player.getWorld().getName()).replace("<money>",
-						Main.pl.get("vault") == true ? String.valueOf(Main.eco.getBalance(player)) : "vault가 필요합니다."));
+				.replaceAll("(?i)<loc:y>", String.valueOf(Math.floor(player.getLocation().getY())))
+				.replaceAll("(?i)<loc:z>", String.valueOf(Math.floor(player.getLocation().getZ())))
+				.replaceAll("(?i)<world>", player.getWorld().getName())
+				.replaceAll("(?i)<money>",
+						Main.pl.get("vault") == true ? String.valueOf(Main.eco.getBalance(player)) : "vault가 필요합니다.")
+				.replaceAll("<papi_%.+%>",
+						Main.pl.get("papi") == true
+								? PlaceholderAPI.setPlaceholders(player, str.replaceAll(".*<papi_|>.*", ""))
+								: "papi가 필요합니다."));
 	}
 
 	private static double getXloc(Player player) {

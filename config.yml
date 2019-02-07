@@ -1,21 +1,25 @@
-# 사용할 수 있는 플레이스 홀더입니다
-# <playername> - 플레이어이름
+# 사용할 수 있는 홀더입니다
+# <playername> - 플레이어이름 / <level> - 레벨
 # <online> - 접속자수 / <maxplayer> - 최대플레이어
 # <health> - 체력 / <maxhealth> - 최대체력 / <food> - 배고픔
-# <level> - 레벨
 # <loc:x> - x좌표 / <loc:y> - y좌표 / <loc:z> - z좌표
-# <world> - 월드의 이름
-# <ip> - 플레이어의 아이피
+# <world> - 월드의 이름 / <ip> - 플레이어의 아이피
+# <money> - 플레이어의 돈 ( Vault 필요 )
+# <papi_%placeholder%> - 플레이스 홀더를 사용합니다. ( PlaceholderAPI 필요 )
 
 # 스코어보드의 제목을 설정합니다.
+# delay는 스코어보드가 delay회 만큼 다시 불러와질때마다 다음내용으로 변경되게합니다.
+# delay에는 1 이상의 정수를 적어주세요.
 title:
-- '&c-=-=- &fPRScoreboard &c-=-=-'
-- '&6-=-=- &fPRScoreboard &6-=-=-'
-- '&e-=-=- &fPRScoreboard &e-=-=-'
-- '&a-=-=- &fPRScoreboard &a-=-=-'
-- '&b-=-=- &fPRScoreboard &b-=-=-'
-- '&1-=-=- &fPRScoreboard &1-=-=-'
-- '&5-=-=- &fPRScoreboard &5-=-=-'
+  delay: 1
+  contents:
+  - '&c&m+---&f PRScoreboard &c&m---+'
+  - '&6&m+---&f PRScoreboard &6&m---+'
+  - '&e&m+---&f PRScoreboard &e&m---+'
+  - '&a&m+---&f PRScoreboard &a&m---+'
+  - '&b&m+---&f PRScoreboard &b&m---+'
+  - '&1&m+---&f PRScoreboard &1&m---+'
+  - '&5&m+---&f PRScoreboard &5&m---+'
 
 # 스코어보드의 내용을 설정합니다
 # 최대 15개까지 가능합니다 [ 초과 시 출력은 되지 않습니다 ]
@@ -28,3 +32,8 @@ scoreboard:
 - '&a:: &f접속자수 &a::'
 - '  &f<online>'
 - ''
+
+# 스코어보드의 내용을 다시 불러오는 시간(틱)을 설정합니다.
+# 20 ticks = 1 second
+# loadTime은 1 이상의 정수를 적어주세요.
+loadTime: 3
