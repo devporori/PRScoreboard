@@ -12,7 +12,6 @@ import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.ScoreboardManager;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 
@@ -31,17 +30,15 @@ public class ScoreboardController {
 			@Override
 			public void run() {
 				Bukkit.getOnlinePlayers().forEach(player -> {
-					if (!us.get(player))
-						return;
-					setScoreboard(player);
+					if (us.get(player))
+						setScoreboard(player);
 				});
 			}
 		}, 0L, delay.get("scoreboard"));
 	}
 
 	static void setScoreboard(Player player) {
-		ScoreboardManager m = Bukkit.getScoreboardManager();
-		Scoreboard b = m.getNewScoreboard();
+		Scoreboard b = Bukkit.getScoreboardManager().getNewScoreboard();
 		Objective o = b.registerNewObjective("playerinfo", "dummy");
 		o.setDisplaySlot(DisplaySlot.SIDEBAR);
 		o.setDisplayName(Util.replaceColor(getTitle(player)));
