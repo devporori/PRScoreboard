@@ -46,7 +46,7 @@ public class Commands implements CommandExecutor {
 					return false;
 				}
 				sendMessage(sender, "리로드 되었습니다.");
-				Main.instance.reloadcf();
+				Main.instance.reloadcf(true);
 				return false;
 			} else {
 				sendMessage(sender, "알수없는 명령어입니다.");

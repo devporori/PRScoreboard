@@ -11,7 +11,7 @@
 # delay는 스코어보드가 delay회 만큼 다시 불러와질때마다 다음내용으로 변경되게합니다.
 # delay에는 1 이상의 정수를 적어주세요.
 title:
-  delay: 1
+  delay: 2
   contents:
   - '&c&m+---&f PRScoreboard &c&m---+'
   - '&6&m+---&f PRScoreboard &6&m---+'
@@ -36,4 +36,4 @@ scoreboard:
 # 스코어보드의 내용을 다시 불러오는 시간(틱)을 설정합니다.
 # 20 ticks = 1 second
 # loadTime은 1 이상의 정수를 적어주세요.
-loadTime: 3
+loadTime: 5

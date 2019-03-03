@@ -85,17 +85,16 @@ public class ScoreboardController {
 				.replaceAll("(?i)<food>", String.valueOf(player.getFoodLevel()))
 				.replaceAll("(?i)<level>", String.valueOf(player.getLevel()))
 				.replaceAll("(?i)<loc:x>",
-						getXloc(player) == -1 ? "-0"
+						getXloc(player) == -1 ? "-0.0"
 								: getXloc(player) < 0 ? String.valueOf(getXloc(player) + 1)
 										: String.valueOf(getXloc(player)))
 				.replaceAll("(?i)<loc:y>", String.valueOf(Math.floor(player.getLocation().getY())))
 				.replaceAll("(?i)<loc:z>", String.valueOf(Math.floor(player.getLocation().getZ())))
 				.replaceAll("(?i)<world>", player.getWorld().getName())
 				.replaceAll("(?i)<money>",
-						Main.pl.get("vault") == true ? String.valueOf(Main.eco.getBalance(player)) : "vault가 필요합니다.")
+						Main.pl.get("Vault") ? String.valueOf(Main.eco.getBalance(player)) : "vault가 필요합니다.")
 				.replaceAll("<papi_%.+%>",
-						Main.pl.get("papi") == true
-								? PlaceholderAPI.setPlaceholders(player, str.replaceAll(".*<papi_|>.*", ""))
+						Main.pl.get("papi") ? PlaceholderAPI.setPlaceholders(player, str.replaceAll(".*<papi_|>.*", ""))
 								: "papi가 필요합니다."));
 	}
 
